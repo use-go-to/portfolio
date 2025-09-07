@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Lecointre David</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #000;
+      color: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    header {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      background: url("https://images.unsplash.com/photo-1576836165612-8bc9b07e7778?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") no-repeat center center/cover;
+      position: relative;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    header .content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-style: italic;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease;
+    }
+
+    header p, header a {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease;
+    }
+
+    header a {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      border: 2px solid #fff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 1rem;
+    }
+
+    header a:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    /* --- Sections alternées --- */
+    section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      opacity: 0;
+      transition: all 1s ease;
+    }
+
+    section:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    section.visible {
+      opacity: 1;
+    }
+
+    .text {
+      flex: 1;
+      transform: translateX(-50px);
+      transition: all 1s ease;
+    }
+
+    section:nth-child(even) .text {
+      transform: translateX(50px);
+    }
+
+    section.visible .text {
+      transform: translateX(0);
+    }
+
+    .image {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .image img {
+      width: 100%;
+      border-radius: 10px;
+      opacity: 0;
+      transform: scale(1.05);
+      transition: all 1s ease;
+    }
+
+    section.visible .image img {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      border-top: 1px solid #333;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* Navigation hover */
+    nav a:hover {
+      color: #00d4ff !important;
+    }
+
+    /* Responsive navigation */
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column !important;
+        gap: 1rem !important;
+      }
+      
+      section {
+        flex-direction: column !important;
+        text-align: center;
+      }
+      
+      section:nth-child(even) {
+        flex-direction: column !important;
+      }
+      
+      header h1 {
+        font-size: 2rem !important;
+      }
+    }
+
+    /* Animation d'apparition du Hero */
+    .loaded h1, 
+    .loaded p, 
+    .loaded a {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav style="position: fixed; top: 0; width: 100%; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); z-index: 1000; padding: 1rem 2rem;">
+    <ul style="list-style: none; display: flex; justify-content: center; gap: 2rem; margin: 0;">
+      <li><a href="#presentation" style="color: #fff; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">À propos</a></li>
+      <li><a href="#competences" style="color: #fff; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Compétences</a></li>
+      <li><a href="#offre" style="color: #fff; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Services</a></li>
+      <li><a href="#portfolio" style="color: #fff; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Portfolio</a></li>
+      <li><a href="#contact" style="color: #fff; text-decoration: none; font-weight: 500; transition: color 0.3s ease;">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header>
+    <div class="content">
+      <h1>"Créer des sites modernes, rapides et accessibles."</h1>
+      <p>Je m'appelle <strong>Lecointre David</strong>, j’ai 17 ans, lycéen et passionné de code depuis tout petit.<br>
+      Mon objectif ? Mettre mes compétences au service de ceux qui veulent une présence en ligne <strong>simple et professionnelle</strong>.</p>
+      <a href="#presentation">Découvrir mon univers</a>
+    </div>
+  </header>
+
+  <!-- PRESENTATION -->
+  <section id="presentation">
+    <div class="text">
+      <h2>À propos de moi</h2>
+      <p>
+        Je suis un jeune développeur passionné qui a découvert le code dès l’enfance.<br><br>
+        Aujourd’hui, à 17 ans, je crée des sites web modernes, sécurisés et élégants.<br><br>
+        Ma philosophie : rendre le web accessible à tous, même à ceux qui n’y connaissent rien.
+      </p>
+    </div>
+    <div class="image">
+      <img src="https://images.unsplash.com/photo-1601887389937-0b02c26b602c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZGF2aWR8ZW58MHx8MHx8fDA%3D" alt="Programmation">
+    </div>
+  </section>
+
+  <!-- COMPETENCES -->
+  <section id="competences">
+    <div class="text">
+      <h2>Mes compétences</h2>
+      <p>Technologies maîtrisées pour créer des sites web performants :</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem;">
+        <div style="background: rgba(255, 255, 255, 0.05); padding: 1rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
+          <h3 style="color: #00d4ff; margin-bottom: 0.5rem;">Frontend</h3>
+          <p>HTML5, CSS3, JavaScript, React</p>
+        </div>
+        <div style="background: rgba(255, 255, 255, 0.05); padding: 1rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
+          <h3 style="color: #00d4ff; margin-bottom: 0.5rem;">Backend</h3>
+          <p>Node.js, PHP, Python</p>
+        </div>
+        <div style="background: rgba(255, 255, 255, 0.05); padding: 1rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
+          <h3 style="color: #00d4ff; margin-bottom: 0.5rem;">Design</h3>
+          <p>UI/UX, Responsive Design</p>
+        </div>
+        <div style="background: rgba(255, 255, 255, 0.05); padding: 1rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
+          <h3 style="color: #00d4ff; margin-bottom: 0.5rem;">Outils</h3>
+          <p>Git, GitHub, VS Code</p>
+        </div>
+      </div>
+    </div>
+    <div class="image">
+      <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&w=800&q=80" alt="Technologies">
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div style="background: linear-gradient(135deg, #00d4ff, #0099cc); color: #000; text-align: center; padding: 3rem 2rem; margin: 2rem 0;">
+    <h2 style="color: #000; margin-bottom: 1rem;">Prêt à créer votre site web ?</h2>
+    <p>Discutons de votre projet et donnons vie à vos idées</p>
+    <a href="#contact" style="display: inline-block; background: #000; color: #fff; padding: 1rem 2rem; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 1rem;">Démarrer mon projet</a>
+  </div>
+
+  <!-- OFFRE -->
+  <section id="offre">
+    <div class="text">
+      <h2>Mon offre</h2>
+      <p>
+        Un site internet, ce n’est pas qu’un fichier qu’on vous livre une fois pour toutes.<br>
+        C’est une vitrine vivante qui évolue avec votre activité.<br><br>
+        👉 Mon service inclut :  
+      </p>
+      <ul>
+        <li>✔ Un site personnalisé à votre image</li>
+        <li>✔ Hébergement 24/7 100% sécurisé (GitHub Pages)</li>
+        <li>✔ Actualisation mensuelle incluse</li>
+        <li>✔ Un suivi permanent</li>
+      </ul>
+      <p style="margin-top:1rem;">
+        💡 Tarif clair et sans surprise :<br>
+        <strong>1 mois offert</strong> → puis <strong>50 €/mois</strong>
+      </p>
+    </div>
+    <div class="image">
+      <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80" alt="Offre">
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <div class="text">
+      <h2>Mes réalisations</h2>
+      <p>
+        Quelques exemples de mes projets : chaque site est pensé pour être unique, responsive et rapide.
+      </p>
+    </div>
+    <div class="image">
+      <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Projet">
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="text">
+      <h2>Contact</h2>
+      <p>
+        Intéressé par la création d’un site ?<br>
+        Discutons ensemble de vos besoins.  
+      </p>
+      <p style="margin-top:1rem;">
+        ✉ Email : <a href="mailto:school.dlecointre@gmail.com" style="color: #fff; text-decoration: none;">school.dlecointre@gmail.com</a><br>
+        📞 Téléphone : 06 16 04 78 02
+      </p>
+    </div>
+    <div class="image">
+      <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Contact">
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Lecointre David – Tous droits réservés</p>
+  </footer>
+
+  <!-- SCRIPT ANIMATIONS -->
+  <script>
+    // Animation du Hero au chargement
+    window.addEventListener("load", () => {
+      document.querySelector("header .content").classList.add("loaded");
+    });
+
+    // Observer pour fade-in + slide
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll("section").forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
